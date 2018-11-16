@@ -1,13 +1,41 @@
-# Consensus Abstraction Layer
+# Common Knowlegde Abstraction Layer
 
-This document defines the interface a Fantom network participant must provide.
+A role of the consensus Layer in the Fantom framework is to provide a common store
+of knowledge for the Fantom virtual machine. A consensus participant must provide an
+interface for Fantom programs to add and retrieve data from the common knowledge store.
 
-A Fantom network participant can
-1. submit data to be written to the common 
-2. knowledge store and read data in the common knowledge store. 
+This document defines the interface a consensus participant must provide to the Fantom
+Virtual Machine..
 
 
-## Top level
+## Proposal 1: Time Ordered Key Value Store Interface
+
+The time ordered key value store interface allows for adding data or Fantom programs to the
+common knowledge store, retrieving data by key and retrieving data by time order.
+
+The time ordered retrieval function allows provides a convenient interface for the Fantom
+virtual machine to fetch programs 
+
+```
+type Key = u256
+
+//Fantom program bytecode
+type Program = [u8]
+
+type Data = [u8]
+
+type Value = Program | Data 
+
+
+function create(Value) -> Key;
+
+function read_by_key(Key) -> Option<(u128, Value)>;
+
+function read_by_time_order(u128) -> Option<(Key, Value)>;
+  
+```
+
+## Proposal 2
 
 * Send transaction *Tx* of suze *len* bytes into Consensus. Function returns transaction ID as a hex string.
 ```
@@ -56,17 +84,6 @@ Once a transaction reached consensus it would be pushed to the listener as the f
 +------------------------------+
 ```
 
-## Participant Interface
-
-
-```
-type Key = [u8; 4]
-type Value = Vec<u8>
-
-fn write(v: value) -> Key;
-fn read(ks: Vec<Key>) -> Vec<Some<Value>>;
-
-```
 
 
 
