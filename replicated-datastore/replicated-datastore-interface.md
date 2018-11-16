@@ -36,7 +36,7 @@ function read_by_time_index(i: TimeIndex) -> Option<(Key, Value)>;
 
 ## Proposal 2
 
-* Send transaction *Tx* of suze *len* bytes into Consensus. Function returns transaction ID as a hex string.
+* Send transaction *Tx* of size *len* bytes into Consensus. Function returns transaction ID as a hex string.
 ```
 fn register_transaction(Tx: &u64, len u64) -> String
 ```
