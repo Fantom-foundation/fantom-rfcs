@@ -28,10 +28,12 @@ events over a network. The particpants must know each other and agree upon the t
 
 ## 1. Participants
 
-The participants in the network are mutually agreed upon. Participants are identified by a unique public key. Each particpant must store the public key, the IP address and the Creator's Id of every other participant in the network to disk. 
+The participants in the network are consensually agreed upon. Participants are identified by a unique public key. Each particpant must store the public key, the IP address and base port number of every other participant in the network to disk. 
 
 A participant may request another participant for a list of participants. The receving participant must respond with a list of participants it knows.
-The response message must include the IP address, public key and ID of the participants signed by the responding participant.
+The response message must include the IP address and base port number and public key signed by the responding participant. (*TODO*: we should limit the response list size for public scale use cases)
+
+*TODO*: a new participant to be need to get know IP address and base port number and public key at least of one node. How would be procedure/mechanise for a new participant to be to get that information?
 
 
 #### Adding Participants to the Network
@@ -48,7 +50,7 @@ A client sends a payload and a unique payload identifier to the Participant. The
 
 Undefined in golang implementation
 
-A client can updats on the status of their submitted payload by subscribing to messages from a participant. 
+A client can be updated on the status of their submitted payload by subscribing to messages from a participant. 
 The participant will send messages including the unique payload identifier and the status of the message (pending, final, rejected).
 
 ## Events
