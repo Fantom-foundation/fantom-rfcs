@@ -7,10 +7,7 @@ A Fantom network participant can
 2. knowledge store and read data in the common knowledge store. 
 
 
-## Participant Interface
-
-
-### Top level
+## Top level
 
 * Send transaction *Tx* of suze *len* bytes into Consensus. Function returns transaction ID as a hex string.
 ```
@@ -59,6 +56,8 @@ Once a transaction reached consensus it would be pushed to the listener as the f
 +------------------------------+
 ```
 
+## Participant Interface
+
 
 ```
 type Key = [u8; 4]
@@ -68,4 +67,6 @@ fn write(v: value) -> Key;
 fn read(ks: Vec<Key>) -> Vec<Some<Value>>;
 
 ```
+
+
 
