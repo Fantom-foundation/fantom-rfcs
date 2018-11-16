@@ -1,42 +1,62 @@
 # Replicated Datastore Interface
 
-The replicated datastore 
-of knowledge for the Fantom virtual machine. A participating node in the fantom network must
-provide an interface for Fantom programs to add and retrieve data from the common knowledge store.
+The replicated datastore is used to keep a immutable record of all bytecode executed on the
+Fantom virtual machine. A participating node on the fantom network must provide an interface
+for Fantom virtual machine to retreive ordered fantom bytecode and store fantom bytecode
+to the replicated data store.
 
-This document defines the interface a consensus participant must provide to the Fantom
-Virtual Machine.
+This document defines the interface a replicated datastore must implement.
 
 
-## Proposal 1: Time Ordered Key Value Store
+## Proposal 1: Key Value Store with Time Order Index
 
-The time ordered key value store interface allows for adding data or Fantom programs to the
-common knowledge store, retrieving data by key and retrieving data by time order.
+### Interface
+
+#### Types
+
+##### Key
+Unique 256 bit key
+```rust
+type Key = [u8; 32];
+```
+
+##### TimeIndex
+128 bit time series index where the index 0 is the oldest event
+```rust
+type TimeIndex =  [u8; 16];
+```
+
+##### Value
+Byte array 
+```rust
+type Value = Vec<u8>;
+```
+
+#### Functions
+
+##### create
+Submits a value to the data replicated store for storage. This function is not guaranteed
+to be successful.
+```rust
+fn create(k: key, v: Value);
+```
+##### ready_by_key
+```rust
+fn read_by_key(k: Key) -> Option<(TimeIndex, Value)>;
+```
+##### read_by_time_index
 
 The time ordered retrieval function allows provides a interface for the Fantom
 virtual machines to fetch programs from the common knowledge and execute them in the correct
 order and compute the same state.
 
-
-```
-type Key = [u8; 32]
-
-type TimeIndex =  [u8; 16]
-
-//Fantom program bytecode
-type Program = Vec<u8>
-
-function create(Value) -> Key;
-
-function read_by_key(k: Key) -> Option<(TimeIndex, Value)>;
-
-function read_by_time_index(i: TimeIndex) -> Option<(Key, Value)>;
-  
+```rust
+fn read_by_time_index(i: TimeIndex) -> Option<(Key, Value)>;
 ```
 
 ## Proposal 2
 
-* Send transaction *Tx* of suze *len* bytes into Consensus. Function returns transaction ID as a hex string.
+* Send transaction *Tx* of size *len* bytes into Consensus. Function returns transaction ID as a hex string.
 ```
 fn register_transaction(Tx: &u64, len u64) -> String
 ```
