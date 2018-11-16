@@ -16,14 +16,15 @@ struct Event {
 
 struct Block {
     atropos: Bytes32,
+    clothos: Vec<Bytes32>,
+    roots: Vec<Bytes32>,
+    ordered_events: Vec<Event>,
+    prev_block:
 }
 
-struct FVM {
 
-}
-
-impl State {
-    pub fn transition(&self, tx: Transaction) -> Result<State> {
+pub trait FantomVirtualMachine {
+    fn transition(state: State, tx: Transaction) -> Result<State> {
 
     }
 }
