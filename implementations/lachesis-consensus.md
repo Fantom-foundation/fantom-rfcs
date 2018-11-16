@@ -86,7 +86,7 @@ A network event consists of an event header and the payload.
 2. Gas: The gas allocated to execute the fantom program
 
 *Note: Network Event Size?*
-The size of the payload must be smaller than (1372 - (transport protocol overhear)) bytes. This is to ensure that an event block can be transmitted over  is smaller thant the maxiumum transmission unit (MTU) of 1500 bytes (citiation). Events larger than to prevent decreased performance from packet fragmentation (needs evidence)
+The size of the payload must be smaller than (1372 - (transport protocol overhear)) bytes. This is to ensure that an event block can be transmitted over  is smaller thant the maxiumum transmission unit (MTU) of 1500 bytes (citiation). Events larger than to prevent decreased performance from packet fragmentation (needs evidence). NB: current golang implementation has no limitation on event size as a node bundles all pending transactions into a single newly created event.
 
 
 ## Event Validation <a name="validation"></a>
