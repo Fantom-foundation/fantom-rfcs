@@ -46,9 +46,9 @@ fn read_by_key(k: Key) -> Option<(TimeIndex, Value)>;
 ```
 ##### read_by_time_index
 
-The time ordered retrieval function allows provides a interface for the Fantom
-virtual machines to fetch programs from the common knowledge and execute them in the correct
-order and compute the same state.
+The time ordered retrieval function allows Fantom virtual machines to fetch programs
+from the replicated data store and execute them in the correct order to arrive at the
+same world state.
 
 ```rust
 fn read_by_time_index(i: TimeIndex) -> Option<(Key, Value)>;
