@@ -1,8 +1,14 @@
 # Consensus Abstraction Layer
 
-This document defines the interface a Fantom Consensus algorithm must provide.
+This document defines the interface a Fantom network participant must provide.
 
-## Interface
+A Fantom network participant can
+1. submit data to be written to the common 
+2. knowledge store and read data in the common knowledge store. 
+
+
+## Participant Interface
+
 
 ### Top level
 
@@ -55,6 +61,11 @@ Once a transaction reached consensus it would be pushed to the listener as the f
 
 
 ```
-fn create(Va) -> Key
+type Key = [u8; 4]
+type Value = Vec<u8>
+
+fn write(v: value) -> Key;
+fn read(ks: Vec<Key>) -> Vec<Some<Value>>;
+
 ```
 

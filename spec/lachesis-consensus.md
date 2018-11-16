@@ -163,7 +163,6 @@ A Clotho event block is a root event block that has been witnessed by 2/3 of the
 
 TO BE DONE
 
-
 ### Event Finality
 
 Event that have occured prior to the Atropos block are final. 
@@ -177,4 +176,3 @@ TO BE DONE
 ## Adding new participants
 
 TO BE DONE
-
