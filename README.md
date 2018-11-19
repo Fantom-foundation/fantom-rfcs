@@ -1,4 +1,4 @@
-lachesis-specification
+Fantom RFC's
 ======================
 
 Written for IETF submission, this is written in a Markdown variant then translated to RFC XML.

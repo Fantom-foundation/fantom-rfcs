@@ -1,12 +1,14 @@
-# Replicated Datastore Interface
+# Replicated Datastore Abstraction Layer
 
 The replicated datastore is used to keep a immutable record of all bytecode executed on the
 Fantom virtual machine. A participating node on the fantom network must provide an interface
 for Fantom virtual machine to retreive ordered fantom bytecode and store fantom bytecode
 to the replicated data store.
 
-This document defines the interface a replicated datastore must implement.
+Typically a consensus algorithm, for example lachesis, raft or paxos, would be used to implement
+this replicated datastore.
 
+This document defines the interface a replicated datastore must implement.
 
 ## Proposal 1: Key Value Store with Time Order Index
 
@@ -34,17 +36,23 @@ type Value = Vec<u8>;
 
 #### Functions
 
-##### create
+##### Create
 Submits a value to the data replicated store for storage. This function is not guaranteed
-to be successful.
+to be successful. read_by_key can be used to check if this function call
+was successful.
+ 
 ```rust
 fn create(k: key, v: Value);
+
 ```
-##### ready_by_key
+##### Read by Key
+Fetch a stored value by its key. A None return value indicates that
+the there is no value corresponding to that key. This function can be 
+used to whether a create operation has failed or not.
 ```rust
 fn read_by_key(k: Key) -> Option<(TimeIndex, Value)>;
 ```
-##### read_by_time_index
+##### Read by Time Index
 
 The time ordered retrieval function allows Fantom virtual machines to fetch programs
 from the replicated data store and execute them in the correct order to arrive at the
@@ -53,6 +61,8 @@ same world state.
 ```rust
 fn read_by_time_index(i: TimeIndex) -> Option<(Key, Value)>;
 ```
+
+#####
 
 ## Proposal 2
 

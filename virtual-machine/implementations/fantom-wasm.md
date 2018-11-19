@@ -1,5 +1,8 @@
-# Fantom Virtual Machine
+# Fantom WASM Virtual Machine
 
-The fantom virtual machine is used to compute the state the of the fantom network. 
-The fantom virtual machine applies fantom programs current fantom world state to
-computes a new fantom world state.
+## Table of Contents
+1. Overview
+2. Instruction Set
+3. Memory Model
+4. Functions
+5. Modules
