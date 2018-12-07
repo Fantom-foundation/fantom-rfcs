@@ -1,4 +1,27 @@
-# Fantom Framework
+%%%
+title = "Fantom Framework"
+abbrev = "Fantom Framework"
+area = "Internet"
+workgroup = "Fantom"
+keyword = ["consensus"]
+#date = 2019-12-07T00:00:00Z
+
+[seriesInfo]
+name = "RFC"
+value = "1912839"
+status = "informational"
+
+[[author]]
+surname="Sharma"
+fullname="Rishab Sharma"
+organization = "Fantom Foundation"
+  [author.address]
+  email = "rishab.sharma@fantom.foundation"
+%%%
+
+{mainmatter}
+
+# Introduction
 
 The Fantom framework is a framework for building distributed applications that run on a
 trustless network.
@@ -8,9 +31,9 @@ The Fantom framework consists of two main components:
 1. Replicated Transaction Log
 2. Virtual Machine
 
-## Definitions
+# Definitions
 
-##### Fantom Network
+## Fantom Network
 The Fantom network consists of a group of participants that agree or disagree on
 the occurence of events using the Lachesis consensus protocol.
 
@@ -26,32 +49,32 @@ store fantom bytecode from the replicated event log.
 
 Typically a consensus algorithm would be used to implement this replicated transaction log.
 
-### Interface
+# Interface
 
-#### Types
+# Types
 
-##### Transaction Hash
+## Transaction Hash
 Unique 256 bit key
 ```rust
 type TxHash = [u8; 32];
 ```
 
-##### Absolute Order
+## Absolute Order
 64 bit unsigned integer representing the absolute order of the transaction where the index 0 is 
 absolute order of the oldest event.
 ```rust
 type TimeIndex = u64;
 ```
 
-##### Transaction Body
+## Transaction Body
 Byte array that typically contains the
 ```rust
 type TxBody = Vec<u8>;
 ```
 
-#### Functions
+# Functions
 
-##### Create
+## Create
 Submits a transaction to the network for confirmation. This function is not guaranteed
 to be successful. read_by_key can be used to check if this function call
 was successful.
@@ -60,14 +83,14 @@ was successful.
 fn submit_tx(k: key, v: Value) -> Result<TimeIndex, TransactionStatus>;
 ```
 
-##### Read by Key
+## Read by Key
 Fetch a stored value by its key. A None return value indicates that
 the there is no value corresponding to that key. This function can be 
 used to whether a create operation has failed or not.
 ```rust
 fn get_tx_by_key(k: Key) -> Option<(TimeIndex, Value)>;
 ```
-##### Read by Time Index
+## Read by Time Index
 
 The time ordered retrieval function allows Fantom virtual machines to fetch programs
 from the replicated data store and execute them in the correct order to arrive at the
@@ -77,7 +100,7 @@ same world state.
 fn read_by_time_index(i: TimeIndex) -> Option<(Key, Value)>;
 ```
 
-## Virtual Machine
+# Virtual Machine
 
 
 The role of the Fantom virtual machine is to execute Fantom programs in a deterministic manner
@@ -85,7 +108,7 @@ to build a world state for Fantom applications.
 
 This document defines the interface a Fantom Virtual machine must implement.
 
-### Fantom World State
+# Fantom World State
 
 Todo: describe the world state data structure and how fantom programs interact with it.
 
@@ -93,7 +116,7 @@ Todo: describe the world state data structure and how fantom programs interact w
 type State = Vec<u8>
 ```
 
-### State Transition
+## State Transition
 
 The Fantom virtual machine must implement a function to transition from 
 the fantom world state to another. Invalid programs must return a error result.
@@ -114,12 +137,11 @@ and execute them to build the world state. The Fantom virtual machine uses the
 read_by_time_index API provided by the replicated datastore to acquire programs in time order.
 
 
-### Verified Computation Certificates
-
-The Ethereum state machine requires every participant to compute the state  
-An alternative is for a particular client
+# Verified Computation Certificates
 
 Unlike the Ethereum virtual machine, the Fantom virtual machine does not require every participant
 to compute the next state to verify it. Participants must generate a certificate to prove that
 the state transition caused by their submitted transaction is valid. Other participants only need
 to verify the certificate to esnure the computed state is correct.
+
+{backmatter}

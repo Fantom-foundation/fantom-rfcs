@@ -1,6 +1,27 @@
-# Lachesis Consensus Protocol
+%%%
+title = "Lachesis Consensus Protocol"
+abbrev = "Lachesis Consensus Protocol"
+area = "Internet"
+workgroup = "Fantom"
+keyword = ["consensus"]
+#date = 2019-12-07T00:00:00Z
 
-#### Abstract
+[seriesInfo]
+name = "RFC"
+value = "1912839"
+status = "informational"
+
+[[author]]
+surname="Sharma"
+fullname="Rishab Sharma"
+organization = "Fantom Foundation"
+  [author.address]
+  email = "rishab.sharma@fantom.foundation"
+%%%
+
+{mainmatter}
+
+# Introduction
 
 The lachesis protocol allows a group of participants to agree upon the occurence and ordering of 
 events over a network. The lachesis consensus protocol can be used to implement the common 
@@ -9,34 +30,6 @@ to consensus on the ordering and validity of these events using the lachesis pro
 consensus protocol can be used to implement the replicated datastore interface.
 
 This document specifies how a lachesis network participant should behave.
-
-## Table of Contents
-1. Participants
-    1. Adding Participants
-    2. Removing Participants
-2. Clients
-    1. Client Authentication
-3. Events
-    1. Event Format
-        1. Header
-        2. Payload
-    2. Validation
-        1. Event Validation
-        2. Payload Validation
-4. Communication between Participants
-    1. Gossip Protocol
-    2. Sync Request/Response
-5. Consensus Algorithm
-    1. Event Relationships
-        1. Ancestor Relationship
-        2. Witness Relationship
-    2. Event Types
-        1. Genesis
-        2. Root
-        3. Clotho
-        4. Atropos
-    3. Ordering and Finality
-    
     
 ## Participants
 
@@ -186,3 +179,4 @@ TO DO
 
 TO DO
 
+{backmatter}
