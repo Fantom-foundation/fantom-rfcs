@@ -34,6 +34,11 @@ xml: $(XML)
 	    $(MMARK) -2 $< > $(basename $<).xml; \
 	fi
 
-.PHONY: clean
+.PHONY: clean html_body
 clean:
 	rm -f *.txt *.xml *.html
+
+html_body: $(HTML)
+	for h in $(HTML); do \
+		hxnormalize -xe $$h | hxselect -cs '\n' 'body' ; \
+	done
