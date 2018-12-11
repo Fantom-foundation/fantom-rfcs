@@ -39,6 +39,9 @@ clean:
 	rm -f *.txt *.xml *.html
 
 html_body: $(HTML)
-	for h in $(HTML); do \
-		hxnormalize -xe $$h | hxselect -cs '\n' 'body' ; \
+	$(eval TMPFILE := $(shell mktemp))
+	@for h in $(HTML); do \
+		hxnormalize -xe $$h | hxselect -cs '\n' 'body' > $(TMPFILE); \
+		mv $(TMPFILE) $$h ; \
+		echo html bodied $$h ;\
 	done
