@@ -1,1 +1,4 @@
 .idea
+rfcs/*.html
+rfcs/*.txt
+rfcs/*.xml
