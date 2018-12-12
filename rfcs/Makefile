@@ -41,7 +41,7 @@ clean:
 html_body: $(HTML)
 	$(eval TMPFILE := $(shell mktemp))
 	@for h in $(HTML); do \
-		hxnormalize -xe "$$h" | hxselect -cis '\n' 'body' | hxremove -i 'script' > $(TMPFILE); \
+		hxnormalize -xe "$$h" | hxselect -cis '\n' 'body' | hxremove -i 'script' | hxremove 'address' > $(TMPFILE); \
 		mv $(TMPFILE) "$$h" ; \
 		echo html bodied "$$h" ;\
 	done
