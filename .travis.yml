@@ -1,0 +1,12 @@
+language: minimal
+jobs:
+  include:
+    - stage: redeploy-github-page
+      script:
+        - git clone https://GH_TOKEN@github.com/Fantom-foundation/fantom-dev-web && cd fantom-dev-web
+        - printf '    %s\t\t%s' "$TRAVIS_REPO_SLUG" "$TRAVIS_COMMIT" >> CHANGESLOG.md
+        - git commit -am "$TRAVIS_COMMIT_MESSAGE"
+        - git push -u origin master
+env:
+  global:
+    secure: 'c5DcsPmApDGIWbKXWxJDAWgx9B6YtT8vZsjQxUo8jl1cnNMdBuVjnD7uxALq2e/et+xGaW4zHMU4JajdUVzjLyfLh/s2I+AcPzGSjhdnuQWY6TmuRlK9vIrwfNX/tgcAVk0aUmLYoiY834U2PVE4noE6OTH1ARYh2Ttm8Ypg7ca4QmSg6hSHrvM3IhE7Ua95hjWcEaND62QWJf6BnjJ9t1fcwTScxz8uS/A2CxDwu3rDKmXYjHswxZ2eN7p9A5SZ5yK7YVeGmJAke7LTpHFpOtK0VLw2RS6Obbg2tk7S4t5DkXclkWLin99ypwPnUR2KlZmhKRXE2X65mL30GA2Z52ZrCjqmDMEXauz1MxX8Sk6A6vs/KA9b/SjawyNUCKV10llmdbENSYUyZWEZm+ZPf06palMbljQlSItiXIhBWj/bVSpAV26In3TfT6ks4wzgGvHYPpYvPvaodTvErQIwyhnXFEQCIyAKvrmmXWFafkO3r7bpJaQnJihAKC78yxwAHF/2NW5pABwd04onc/+U4cgc6jPRcasshhsFghHLk6bpvkfH3H3L+Uuvp6DtgYEoExCByJnnd4yWtlenUCpvCQNxpD4NYEEJxjwqJ9rFR2BqmGQ9Xj1iwWb55Wk9AaFaZsHgolcSTm1UgqNqK92wFRxCQVB8BAxcTRqX+KPzq/w='
