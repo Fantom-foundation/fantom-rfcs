@@ -82,7 +82,7 @@ The size of the payload must be smaller than (1372 - (transport protocol overhea
 
 ### Validation
 
-#### Event Validation <a name="validation"></a>
+#### Event Validation
 
 An event is valid if the event can be verified by the public key of a participant. 
 
@@ -97,7 +97,7 @@ A genesis event block consists of:
 1. Particpant's ID: the participants public key
 
 
-## Communication between Participants <a name="communication"></a>
+## Communication between Participants
 
 A participants can send a request to synchronise their knowledge of events with another participants knowledge of events. 
 
@@ -128,7 +128,7 @@ The networks events form a directed acyclic graph (DAG). Each event must have tw
 
 ### Event Relationships
 
-#### Ancestor Relationship <a name="communication"></a>
+#### Ancestor Relationship
 
 An event is an ancestor of another event if it is connected directly or by traversing by parent relationships. 
 
@@ -138,7 +138,7 @@ An event is a descendant of another event if it is connected, directly or by tra
 
 ### Events Tpes
 
-#### Super-Ancerstored Event <a name="super-ancestored"></a>
+#### Super-Ancerstored Event
 
 An event that has ancestor events that have been created by 2/3 of the particpants is a super-ancestored event.
 
@@ -153,7 +153,7 @@ An event is a root if it is:
 1. [super-ancestored](#super-ancestored)
 2. a [genesis event](#genesis-event)
 
-#### Genesis Event <a name="genesis-event"></a>
+#### Genesis Event
 
 When a participant is added to the network, genesis event block is created by that participant. The genesis event block does not have any parent events.
 
