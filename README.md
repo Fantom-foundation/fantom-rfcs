@@ -1,5 +1,5 @@
-Fantom RFC's
-======================
+Fantom RFCs
+===========
 
 Written for IETF submission, this is written in a Markdown variant then translated to RFC XML.
 

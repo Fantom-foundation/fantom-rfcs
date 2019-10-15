@@ -12,11 +12,11 @@ value = "1912839"
 status = "informational"
 
 [[author]]
-surname="Sharma"
-fullname="Rishab Sharma"
+surname="Foundation"
+fullname="Fantom Foundation"
 organization = "Fantom Foundation"
   [author.address]
-  email = "rishab.sharma@fantom.foundation"
+  email = ""
 %%%
 
 {mainmatter}

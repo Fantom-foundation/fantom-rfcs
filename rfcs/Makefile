@@ -34,14 +34,14 @@ xml: $(XML)
 	    $(MMARK) -2 $< > $(basename $<).xml; \
 	fi
 
-.PHONY: clean html_body
+.PHONY: clean
 clean:
 	rm -fv *.txt *.xml *.html
 
 html_body: $(HTML)
 	$(eval TMPFILE := $(shell mktemp))
 	@for h in $(HTML); do \
-		hxnormalize -xe "$$h" | hxselect -cis '\n' 'body' | hxremove -i 'script' | hxremove 'address' | node -e 'process.stdin.resume(); process.stdin.setEncoding("utf8"); process.stdin.on("data", d => process.stdout.write(d.replace(/(&nbsp;|<a([^>]+\/)>)/ig, "")));' > $(TMPFILE); \
+		hxnormalize -xe "$$h" | hxselect -cis '\n' 'body' | hxremove -i 'script' | hxremove 'address' | hxremove '#document-information' | node -e 'process.stdin.resume(); process.stdin.setEncoding("utf8"); process.stdin.on("data", d => process.stdout.write(d.replace(/(&nbsp;|<a([^>]+\/)>)/ig, "")));' > $(TMPFILE); \
 		mv $(TMPFILE) "$$h" ; \
 		echo html bodied "$$h" ;\
 	done

@@ -12,11 +12,11 @@ value = "1912839"
 status = "informational"
 
 [[author]]
-surname="Sharma"
-fullname="Rishab Sharma"
+surname="Foundation"
+fullname="Fantom Foundation"
 organization = "Fantom Foundation"
   [author.address]
-  email = "rishab.sharma@fantom.foundation"
+  email = ""
 %%%
 
 {mainmatter}
@@ -35,7 +35,7 @@ The Fantom framework consists of two main components:
 
 ## Fantom Network
 The Fantom network consists of a group of participants that agree or disagree on
-the occurence of events using the Lachesis consensus protocol.
+the occurrence of events using the Lachesis consensus protocol.
 
 ## Replicated Transaction Log
 
@@ -44,7 +44,7 @@ Transactions are validated and appended to the transaction through the the Lache
 
 The replicated event log is used to keep a immutable record of all bytecode
 executed on the Fantom virtual machine. A participating node on the fantom network must
-provide an interface for Fantom virtual machine to retreive ordered fantom bytecode and 
+provide an interface for Fantom virtual machine to retrieve ordered fantom bytecode and 
 store fantom bytecode from the replicated event log.
 
 Typically a consensus algorithm would be used to implement this replicated transaction log.
@@ -142,6 +142,6 @@ read_by_time_index API provided by the replicated datastore to acquire programs 
 Unlike the Ethereum virtual machine, the Fantom virtual machine does not require every participant
 to compute the next state to verify it. Participants must generate a certificate to prove that
 the state transition caused by their submitted transaction is valid. Other participants only need
-to verify the certificate to esnure the computed state is correct.
+to verify the certificate to ensure the computed state is correct.
 
 {backmatter}
