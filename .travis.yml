@@ -3,11 +3,12 @@ jobs:
   include:
   - stage: notify-website      
     script:
+    - author="$(git log -1 --pretty=format:'%an <%ce>')"
     - git clone https://SamuelMarks:$GH_TOKEN@github.com/Fantom-foundation/fantom-dev-web
       && cd fantom-dev-web
     - echo "  | [$TRAVIS_REPO_SLUG](https://github.com/$TRAVIS_REPO_SLUG) | [$TRAVIS_COMMIT_MESSAGE](https://github.com/$TRAVIS_REPO_SLUG/commit/$TRAVIS_COMMIT) |" >> CHANGESLOG.md
     - git add CHANGESLOG.md
-    - git commit -m "[CHANGESLOG.md] $TRAVIS_REPO_SLUG - $TRAVIS_COMMIT_MESSAGE"
+    - git commit -m "[CHANGESLOG.md] $TRAVIS_REPO_SLUG - $TRAVIS_COMMIT_MESSAGE" --author="$author"
     - git push -u origin master
 env:
   global:
