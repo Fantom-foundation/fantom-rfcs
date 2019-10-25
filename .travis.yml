@@ -3,7 +3,9 @@ jobs:
   include:
   - stage: notify-website      
     script:
-    - author="$(git log -1 --pretty=format:'%an <%ce>')"
+    - email_author="$(git log -1 --pretty=format:'%an <%ce>')"
+    - author="${email_author% *}"; git config --global user.name "$author"
+    - email="${email_author#*<}"; email="${email::-1}"; git config --global user.email "$email"
     - git clone https://SamuelMarks:$GH_TOKEN@github.com/Fantom-foundation/fantom-dev-web
       && cd fantom-dev-web
     - echo "  | [$TRAVIS_REPO_SLUG](https://github.com/$TRAVIS_REPO_SLUG) | [$TRAVIS_COMMIT_MESSAGE](https://github.com/$TRAVIS_REPO_SLUG/commit/$TRAVIS_COMMIT) |" >> CHANGESLOG.md
